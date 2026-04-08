@@ -5,11 +5,7 @@ const connectDB = require("./config/db");
 const expenseRoutes = require("./routes/expenseRoutes");
 const errorHandler = require("./middleware/errorMiddleware");
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "Expense Tracker API is running"
-  });
-});
+
 
 dotenv.config();
 connectDB();
@@ -20,6 +16,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/expenses", expenseRoutes);
+app.use("/", ( req, res ) => {
+  res.send("API is running...");
+});
 
 app.use(errorHandler);
 
